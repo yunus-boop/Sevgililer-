@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Sevgililer Günün Kutlu Olsun ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+overflow:hidden;
+color:white;
+text-align:center;
+background:url("foto.jpg") no-repeat center center fixed;
+background-size:cover;
+}
+
+.overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.3);
+backdrop-filter: blur(0px);
+transition: backdrop-filter 0.5s;
+z-index:1;
+}
+
+.container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+z-index:2;
+}
+
+button{
+margin-top:15px;
+padding:15px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff4e8a;
+color:white;
+cursor:pointer;
+}
+
+/* DÜŞEN KALPLER */
+
+.heart{
+position:fixed;
+font-size:24px;
+pointer-events:none;
+animation: fall linear forwards;
+}
+
+@keyframes fall{
+
+0%{
+transform: translateY(0);
+opacity:1;
+}
+
+100%{
+transform: translateY(100vh);
+opacity:0;
+}
+
+}
+
+/* KARIM YAZISI */
+
+#karim{
+
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+
+font-size:120px;
+font-weight:bold;
+
+background:linear-gradient(45deg,#ff0080,#ff4dff,#8000ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+transition:0.5s;
+
+z-index:3;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="container">
+
+<h1>Sevgililer günün kutlu olsun bebeğim ❤️</h1>
+
+<p>Seni çok ama çok seviyorum. Sen benim ömrümsün. İyi ki varsın hayatım.</p>
+
+<p>Yunus ❤️</p>
+
+<button onclick="muzikCal()">Müziği Başlat ❤️</button>
+
+<br>
+
+<button onclick="surpriz()">Seni seviyorum ❤️</button>
+
+</div>
+
+<div id="karim">Karım ❤️</div>
+
+<audio id="muzik" loop>
+<source src="muzik.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* SÜREKLİ KALP YAĞMURU */
+
+setInterval(function(){
+
+kalpOlustur(Math.random()*window.innerWidth, -50);
+
+},300);
+
+/* KALP OLUŞTURMA */
+
+function kalpOlustur(x,y){
+
+let kalp=document.createElement("div");
+
+kalp.className="heart";
+
+kalp.innerHTML="❤️";
+
+kalp.style.left=x+"px";
+
+kalp.style.top=y+"px";
+
+kalp.style.animationDuration=(Math.random()*3+3)+"s";
+
+document.body.appendChild(kalp);
+
+setTimeout(function(){
+
+kalp.remove();
+
+},6000);
+
+}
+
+/* BUTONA BASINCA */
+
+function surpriz(){
+
+/* KARIM YAZISI */
+
+document.getElementById("karim").style.transform="translate(-50%,-50%) scale(1)";
+
+/* BLUR */
+
+document.getElementById("overlay").style.backdropFilter="blur(10px)";
+
+/* PATLAMA */
+
+for(let i=0;i<60;i++){
+
+kalpOlustur(
+
+window.innerWidth/2 + (Math.random()*300-150),
+
+window.innerHeight/2 + (Math.random()*300-150)
+
+);
+
+}
+
+}
+
+/* MÜZİK */
+
+function muzikCal(){
+
+document.getElementById("muzik").play();
+
+}
+
+</script>
+
+</body>
+</html>
